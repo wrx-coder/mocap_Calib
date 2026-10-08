@@ -7,6 +7,7 @@ name = "mocap-calib-workspace"
 version = "0.0.0"
 description = "Skeleton workspace for static robot camera-to-mocap spatial calibration"
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.10"
 dependencies = []
 
