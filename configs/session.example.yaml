@@ -1,0 +1,63 @@
+# Template only. Paths are workspace-root-relative in the planned loader.
+schema_version: 1
+status: template
+scope: spatial_extrinsics_only
+session_id: null
+operator: null
+camera_config: configs/camera.example.yaml
+calibration_config: configs/calibration.example.yaml
+
+inputs:
+  mocap_csv: []
+  mocap_project: null
+  mocap_asset: null
+  camera_recording: null
+  torso_model: null
+  torso_correspondences: null
+  sample_pairs: null
+
+source_conventions:
+  # Verify these from the actual export; never infer silently.
+  length_unit: null
+  world_axis: null
+  handedness: null
+  quaternion_order: null
+  quaternion_direction: null
+  clock_label: null
+  start_time_timezone: null
+  missing_value_encoding: null
+
+internal_conventions:
+  length_unit: m
+  time_unit: s
+  angle_unit: rad
+  world_axis: Z_up
+  handedness: right
+  quaternion_order: xyzw
+  transform_convention: B_to_A
+
+frames:
+  world: null
+  torso: torso_link
+  mocap_rigid_body: null
+  camera_optical: null
+  camera_link: null
+
+static_sampling:
+  target_positions: [200, 400]
+  min_depth_layers: 4
+  hold_duration_s: [0.5, 2.0]
+  min_valid_window_s: 0.3
+  mocap_position_std_max_m: 0.002
+  rigid_orientation_std_max_rad: null
+  # Set from actual per-depth noise; do not copy the mocap threshold.
+  camera_static_criterion: null
+  boundary_margin_s: 0.05
+  holdout_fraction: 0.2
+  split_seed: 0
+  min_covariance_singular_value_ratio: 0.05
+
+outputs:
+  processed_root: data/processed
+  calibration_root: outputs/calibration
+  report_root: outputs/reports

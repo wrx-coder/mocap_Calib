@@ -1,0 +1,47 @@
+# No intrinsic values or transforms have been measured in this template.
+schema_version: 1
+status: template
+serial_number: null
+model: null
+stream: null
+optical_frame: null
+resolution_px: null
+frame_rate_hz: null
+intrinsics:
+  source: null
+  fx: null
+  fy: null
+  cx: null
+  cy: null
+  distortion_model: null
+  distortion_coefficients: null
+settings:
+  exposure: null
+  auto_exposure: null
+  emitter_enabled: null
+  depth_alignment_target: null
+  depth_filters: null
+observation:
+  # depth_surface / stereo_ir / center_xyz; confirm the real pipeline.
+  pipeline: null
+  native_frame: null
+  detector_version: null
+  output_quantity: null
+  ball_radius_already_compensated: null
+  depth_scale_already_compensated: null
+  depth_unit: null
+  ball_radius_m: null
+noise:
+  pixel_std_px: null
+  disparity_std_px: null
+  xyz_covariance_model: null
+transforms:
+  # T_C_L maps camera link L into calibrated optical C.
+  T_C_L: null
+  T_C_L_source: null
+  native_to_C: null
+  native_to_C_source: null
+stereo:
+  right_intrinsics: null
+  T_left_right: null
+  baseline_m: null

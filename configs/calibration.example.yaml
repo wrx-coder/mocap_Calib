@@ -1,0 +1,45 @@
+# Planned solver settings; no solver or validation runner exists yet.
+schema_version: 1
+status: template
+alignment:
+  method: rigid_kabsch_no_scale
+  feature_count: [5, 8]
+  repeat_count: [2, 3]
+solver:
+  initial_method: rigid_kabsch_no_scale
+  refinement: scipy_least_squares
+  rotation_parameterization: rotvec
+  loss: huber
+  normalized_f_scale: 2.5
+  x_scale: jac
+  # pixel_disparity / stereo_pixels / anisotropic_xyz; confirm real input.
+  residual_space: null
+compensation:
+  # Explicitly choose after verifying raw vs corrected observations.
+  model: null
+  radial_offset:
+    enabled: null
+    estimate: null
+    value_m: null
+    bounds_m: null
+  depth_scale:
+    enabled: null
+    estimate: null
+    value: null
+    bounds: null
+validation:
+  targets_are_initial_engineering_goals: true
+  position_rmse_max_m: 0.02
+  pixel_rmse_max_px: 2.0
+  split_rotation_difference_max_deg: 0.5
+  split_translation_difference_max_m: 0.01
+  torso_repeat_rotation_difference_max_deg: 0.5
+  torso_repeat_translation_difference_max_m: 0.003
+  require_independent_holdout: true
+  require_depth_and_region_reports: true
+export:
+  require_validation_pass: true
+  auto_modify_urdf: false
+  # No placeholder identity matrices.
+  T_torso_R: null
+  T_R_C: null

@@ -1,0 +1,27 @@
+# Python / local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local session configuration may contain machine-specific paths
+configs/local/
+
+# Do not accidentally commit recordings or deployment results.
+# Keep directory markers and documentation.
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+/outputs/calibration/*
+!/outputs/calibration/.gitkeep
+/outputs/reports/*
+!/outputs/reports/.gitkeep
+
+# Existing vendor source documents and converted images are NOT ignored.

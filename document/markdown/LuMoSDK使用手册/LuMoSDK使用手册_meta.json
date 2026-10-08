@@ -1,0 +1,592 @@
+{
+  "table_of_contents": [
+    {
+      "title": "LuMoSDK",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          237.4099884033203,
+          217.8177490234375
+        ],
+        [
+          353.6004943847656,
+          217.8177490234375
+        ],
+        [
+          353.6004943847656,
+          243.8577880859375
+        ],
+        [
+          237.4099884033203,
+          243.8577880859375
+        ]
+      ]
+    },
+    {
+      "title": "\u4f7f\u7528\u8bf4\u660e",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          340.0299987792969,
+          402.4990234375
+        ],
+        [
+          444.380859375,
+          402.4990234375
+        ],
+        [
+          444.380859375,
+          428.98162841796875
+        ],
+        [
+          340.0299987792969,
+          428.98162841796875
+        ]
+      ]
+    },
+    {
+      "title": "\u76ee\u5f55",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          279.98488664987406,
+          95.97150489759572
+        ],
+        [
+          317.51637279596974,
+          95.97150489759572
+        ],
+        [
+          317.51637279596974,
+          119.21460373998218
+        ],
+        [
+          279.98488664987406,
+          119.21460373998218
+        ]
+      ]
+    },
+    {
+      "title": "1 \u5de5\u5177\u7b80\u4ecb",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.923828125,
+          100.31640625
+        ],
+        [
+          166.6999969482422,
+          100.31640625
+        ],
+        [
+          166.6999969482422,
+          116.7547607421875
+        ],
+        [
+          89.923828125,
+          116.7547607421875
+        ]
+      ]
+    },
+    {
+      "title": "1.1 \u5de5\u5177\u539f\u7406",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.6328125,
+          228.40948486328125
+        ],
+        [
+          170.89999389648438,
+          228.40948486328125
+        ],
+        [
+          170.89999389648438,
+          242.449462890625
+        ],
+        [
+          89.6328125,
+          242.449462890625
+        ]
+      ]
+    },
+    {
+      "title": "1.2 \u5de5\u5177\u4ecb\u7ecd",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          90.02399444580078,
+          346.5849609375
+        ],
+        [
+          170.89999389648438,
+          346.5849609375
+        ],
+        [
+          170.89999389648438,
+          362.1194763183594
+        ],
+        [
+          90.02399444580078,
+          362.1194763183594
+        ]
+      ]
+    },
+    {
+      "title": "2 LuMoSDK \u793a\u4f8b\u7a0b\u5e8f\u4f7f\u7528\u8bf4\u660e",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          89.6328125,
+          83.87109375
+        ],
+        [
+          301.9700012207031,
+          83.87109375
+        ],
+        [
+          301.9700012207031,
+          99.7147216796875
+        ],
+        [
+          89.6328125,
+          99.7147216796875
+        ]
+      ]
+    },
+    {
+      "title": "2.1 c \u8bed\u8a00\u7248\u672c\u793a\u4f8b",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          109.421875,
+          134.8515625
+        ],
+        [
+          248.3300018310547,
+          134.8515625
+        ],
+        [
+          248.3300018310547,
+          151.260009765625
+        ],
+        [
+          109.421875,
+          151.260009765625
+        ]
+      ]
+    },
+    {
+      "title": "\u4ee3\u7801\u903b\u8f91:",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          108.83984375,
+          327.6728515625
+        ],
+        [
+          163.70382690429688,
+          327.6728515625
+        ],
+        [
+          163.70382690429688,
+          339.68115234375
+        ],
+        [
+          108.83984375,
+          339.68115234375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 c++\u7248\u672c\u793a\u4f8b",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          110.5859375,
+          472.3916015625
+        ],
+        [
+          236.65171813964844,
+          472.3916015625
+        ],
+        [
+          236.65171813964844,
+          489.3499755859375
+        ],
+        [
+          110.5859375,
+          489.3499755859375
+        ]
+      ]
+    },
+    {
+      "title": "2.3 python \u7248\u672c\u793a\u4f8b",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          111.0199966430664,
+          140.1962890625
+        ],
+        [
+          273.76171875,
+          140.1962890625
+        ],
+        [
+          273.76171875,
+          157.49346923828125
+        ],
+        [
+          111.0199966430664,
+          157.49346923828125
+        ]
+      ]
+    },
+    {
+      "title": "\u4ee3\u7801\u903b\u8f91:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          110.294921875,
+          209.2666015625
+        ],
+        [
+          163.70382690429688,
+          209.2666015625
+        ],
+        [
+          163.70382690429688,
+          220.6112060546875
+        ],
+        [
+          110.294921875,
+          220.6112060546875
+        ]
+      ]
+    },
+    {
+      "title": "2.4 MatLab \u7248\u672c\u793a\u4f8b",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          122.05999755859375,
+          368.7861328125
+        ],
+        [
+          283.9700012207031,
+          368.7861328125
+        ],
+        [
+          283.9700012207031,
+          385.8899841308594
+        ],
+        [
+          122.05999755859375,
+          385.8899841308594
+        ]
+      ]
+    },
+    {
+      "title": "3 \u6ce8\u610f\u4e8b\u9879",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          89.341796875,
+          557.49609375
+        ],
+        [
+          158.29998779296875,
+          557.49609375
+        ],
+        [
+          158.29998779296875,
+          573.94140625
+        ],
+        [
+          89.341796875,
+          573.94140625
+        ]
+      ]
+    },
+    {
+      "title": "\u7248\u6743\u58f0\u660e",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          89.341796875,
+          80.58203125
+        ],
+        [
+          132.2639923095703,
+          80.58203125
+        ],
+        [
+          132.2639923095703,
+          93.93792724609375
+        ],
+        [
+          89.341796875,
+          93.93792724609375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          20
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "TableOfContents",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          137
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          330
+        ],
+        [
+          "Line",
+          38
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          198
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          34
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/LuMoSDK\u4f7f\u7528\u624b\u518c"
+}

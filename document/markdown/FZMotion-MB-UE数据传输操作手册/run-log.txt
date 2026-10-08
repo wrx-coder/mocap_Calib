@@ -1,0 +1,9 @@
+Start: 2026-10-08T17:43:25.693443
+OCR mode: OCR when needed and there is no old OCR text
+Layout mode: True
+Processing document: /home/ubuntu22/桌面/PDF转Markdown/FZMotion-MB-UE数据传输操作手册.pdf
+
+End: 2026-10-08T17:43:25.752104
+Status: error
+Exception:
+code=3: Tesseract language initialisation failed
