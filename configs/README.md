@@ -6,11 +6,11 @@
 | [camera.example.yaml](camera.example.yaml) | 相机内参、检测管线、补偿状态和 optical/link 变换 |
 | [calibration.example.yaml](calibration.example.yaml) | 预期求解设置、物理补偿参数和静态验收目标 |
 
-这些是**准备模板，不是可直接运行的配置**；当前没有配置加载器、schema 校验器或标定 CLI。`null` 表示未确认，不能靠默认值继续求解。
+这些是**准备模板，不是完整实机配置**。已实现 preflight 和离线 CLI；`null` 表示未确认，不能靠默认值继续求解。D435i 内参已完成，导入实际 CameraInfo，不使用示例焦距。模板仅检查配置就绪，不表示硬件验收通过。
 
 准备真实会话时，复制三个模板到 `configs/local/<session_id>/`，填写会话编号、输入路径与实测参数，并修改 `session` 中的 `camera_config`、`calibration_config` 引用。保留 `.example.yaml` 为未填写模板，避免覆盖基线。
 
-后续加载器统一以工作区根目录解析相对路径。输入输出统一使用同一 `session_id`；不要把 raw 原始 CSV 与 processed 产品路径混用。
+preflight 以显式 `--root` 工作区根目录解析相对路径；离线处理命令使用显式文件参数。输入输出统一使用同一 `session_id`；不要把 raw 原始 CSV 与 processed 产品路径混用。
 
 ## 必须先确认
 

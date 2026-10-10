@@ -1,68 +1,60 @@
-# 机器人动捕空间外参标定工作区
+# D435i + FZMotion 空间外参标定
 
-用 FZMotion 与机器人相机的静态单球观测标定 `T_torso_C`。
+**RGB-D 静态单球离线闭环**：动捕数据 → 静态 R 系球心，与相机 color optical 系球心配对 → Kabsch/Huber → `T_R_C` → 已知 torso 对齐时组合 `T_torso_C`。
 
-> **当前状态：仅工作区骨架。** 已建立文档导航、Python 包目录、配置模板及数据/结果目录；没有 CSV 解析器、相机检测、标定求解器或可执行标定命令。没有安装依赖或修改机器人配置。工作区已纳入 Git 版本控制。
+当前已实现共享几何、配置检查、CSV读取、手工静态窗口聚合/空间关联、RGB-D几何、torso 对齐、外参求解、留出/分半报告和版本化导出。**合成端到端测试通过；尚未收到真实动捕录制或完成实机标定。** 不控制机器人、不自动改 URDF、不推送私有源码。
 
-## 从这里开始
+## 最短使用路径
 
-1. 按 [空间外参核心流程](document/workflow/机器人动捕标定_核心流程.md) 执行准备、躯干对齐、静态采样、求解和验收。
-2. 阅读 [工作区约定与接口](document/design/工作区约定与接口.md)，明确数据边界和模块职责。
-3. 从 [配置模板说明](configs/README.md) 开始填写真实会话信息。未知值保留 `null`，不能用单位矩阵冒充标定结果。
-4. 原始数据放入 `data/raw/<session_id>/`，处理产品放入 `data/processed/<session_id>/`，结果和报告使用同一会话编号。
-5. 全部资料见 [文档索引](document/README.md)。历史 v4 的动态时间标定、在线接口与备选路线不属于当前工作区实现范围。
-
-## 目录结构
-
-```text
-mocap_Calib/
-├── README.md
-├── pyproject.toml           # 包元数据；算法依赖仅声明为可选项
-├── configs/                # 会话、相机和求解/验收配置模板
-├── src/
-│   ├── dc_mocap/           # 预留：动捕解析、规范化、处理与产品输出
-│   └── dc_calib/           # 预留：相机数据、躯干对齐、外参求解、验收与导出
-├── tests/                  # 测试规划及空的 unit/integration/fixtures 目录
-├── data/
-│   ├── raw/                # 原始数据：不覆盖、不填补、不平滑
-│   └── processed/          # P1/P2、相机静态样本及显式配对表
-├── outputs/
-│   ├── calibration/        # 带版本与验收状态的标定包
-│   └── reports/            # 质量与静态验收报告
-└── document/
-    ├── workflow/           # 当前现场执行流程
-    ├── design/             # 数据层规格、工作区接口
-    ├── references/         # 原 v4 与 FZMotion 对接说明
-    ├── archive/plans/      # 已完成的文档精简计划
-    ├── pdf/                # 厂家原始 PDF（保持原目录）
-    ├── markdown/           # 转换结果、元数据与图片（保持相对引用）
-    └── docs/               # 厂家 DOCX（保持原目录）
-```
-
-## 环境与当前可做的检查
-
-项目采用 Python `src` 布局，要求 Python ≥ 3.10；核心库不依赖 ROS。本次不创建环境或安装软件。`pyproject.toml` 中的依赖是后续实现建议，不是已验证的锁文件。
-
-当前无需安装即可检查包骨架导入：
+环境：Python≥3.10，numpy/scipy/PyYAML；测试需要 pytest。当前环境已有依赖，本次未安装软件。新环境可创建 venv 后 `python -m pip install -e '.[dev]'`。未安装项目时使用 `PYTHONPATH=src python -m dc_calib.cli`，安装后可用 `mocap-calib`。
 
 ```bash
-PYTHONPATH=src python3 -B -c "import dc_mocap, dc_calib; print('workspace skeleton OK')"
+# 一次测试
+python3 -m pytest -q
+# 一次演示（使用未存在的输出目录，不覆盖旧结果）
+PYTHONPATH=src python3 -m dc_calib.cli demo --output outputs/calibration/demo_001
 ```
 
-该命令只验证包存在，**不代表标定功能已实现或通过测试**。以后实现时可在独立虚拟环境中安装可选 `calibration` 和 `dev` 依赖；当前没有 CLI 入口。
+演示生成带真值的合成录制，实际经过 CSV 读取、marker ID 恢复、逐帧转 R/聚合、配对、球心补偿、优化、torso组合及导出。状态只能是 `synthetic_pass`，不能作为实机结果。
 
-## 固定约定
+现场顺序：[核心流程](document/workflow/机器人动捕标定_核心流程.md) → [详细试采指南](document/workflow/首次试采操作指南.md) → [数据契约](document/design/标定数据契约_v1.md)。先选共同靶球并采12–20点，不要一上来采几百点。D435i 内参已完成，只导入既有标定/实机 CameraInfo，不重新标定。
 
-- `T_A_B`：B → A；最终 `T_torso_C = T_torso_R · T_R_C`。
-- 内部单位 m/s/rad；四元数 xyzw；右手系。世界系建议 Z-up，optical 系保持 x 右/y 下/z 前。
-- 动捕使用实测 Marker 散点；逐帧转 R 系后平均；不依赖散点 ID 永久不变。
-- `sample_id` 与静态窗口显式配对，缺段不强行顺序匹配。
-- 球心偏置/深度尺度与 SE(3) 外参分开保存；未通过静态验收不发布部署结果。
+## 实际数据命令
 
-## 下一阶段（尚未实现）
+```bash
+# 导入保存的 CameraInfo YAML（含 width/height/k/d/header）
+PYTHONPATH=src python3 -m dc_calib.cli camera-info --input data/raw/session/camera_info.yaml --output configs/local/session/camera.yaml
+# 填真实 depth units、球半径；depth 必须为正确 color_z，对应这帧 RGB/mask。
+PYTHONPATH=src python3 -m dc_calib.cli rgbd --npz data/raw/session/frame.npz --camera configs/local/session/camera.yaml --time-s 1.0 --quantity surface --output data/processed/session/frame.csv
+# 用自己的记录时钟给动捕窗口编号（不是跨设备时间同步）
+PYTHONPATH=src python3 -m dc_calib.cli extract-mocap --input data/raw/session/mocap.csv --windows data/raw/session/mocap_windows.csv --rigid chest_R --world-axis Z_up --unit mm --marker-id 100242 --frame chest_R --source-kind real --clock mocap_recording --output data/processed/session/mocap.csv
+# 已导出的相机逐帧观测聚合；相机窗口使用相机自己的时间
+PYTHONPATH=src python3 -m dc_calib.cli aggregate-camera --input data/raw/session/camera_frames.csv --windows data/raw/session/camera_windows.csv --quantity surface --source-kind real --clock camera_recording --output data/processed/session/camera.csv
+# 明确双侧静态位置配对与 train/validation；radius 是实测值，不照抄示例
+PYTHONPATH=src python3 -m dc_calib.cli solve --mocap data/processed/session/mocap.csv --camera data/processed/session/camera.csv --pairs data/processed/session/pairs.csv --radius-m 0.04 --torso data/processed/session/torso.csv --output outputs/calibration/session/v1
+```
 
-先补齐真实 CSV、缺测格式、相机观测与 frame 样例，再按数据层规格实现解析与 P1/P2；随后实现躯干对齐、静态外参求解和合成数据测试。不要把历史方案提到但本目录没有的脚本当作可运行依赖。
+以上路径/数值是用法示意；半径0.04不是你的球的已测值。`rgbd` 一次消费一个已有 mask 的 NPZ，输出一帧；`rgbd-batch --manifest <csv> --camera <yaml> --quantity surface --output <csv>` 批处理 `time_s,npz` 清单（NPZ路径相对清单文件），输出逐帧观测供聚合。模型mask和原始流NPZ由现有程序/外层采集器提供。命令不读取任意ROS bag、不运行分割模型、不自动修正深度注册。`--marker-id` 用于每个静止段初始化，之后按空间关联允许ID变化；若已遮挡改ID后无法初始化，改用 `--seed-r x y z` 或明确该段marker，歧义拒绝。
+
+`--torso` 可省略，此时只输出 `T_R_C`，不伪造 torso 外参。缺少独立留出或分半检查不可用不通过验收；失败仍保存报告，命令返回2。共线/缺字段/重复补偿等错误直接拒绝。默认固定半径和尺度；`--estimate-scale` 仅为已声明 surface 的可选尺度精化，不估自由偏置。
+
+发布真实 `hardware_accepted` 还需 `--attestation <yaml>`，包含四个明确 true：`same_center_confirmed`、`torso_alignment_checked`、`independent_holdout_confirmed`、`deployment_configuration_frozen`。这是对现场记录的确认，不是绕过检查的按钮；没有真实记录勿填true。默认真实结果仅 `unverified` 候选。工具不自动部署。
+
+## 工作区
+
+- `configs/`：会话/相机/求解模板与 `configs/local/` 实测配置（忽略）。
+- `src/dc_mocap/`：共享几何、CSV、静态数据处理、合成器。
+- `src/dc_calib/`：RGB-D、torso对齐、求解/报告/导出、CLI。
+- `data/raw/`：原始录制只读保留；`data/processed/`：点产品/元数据/配对表。
+- `outputs/`：结果和报告；输入/输出大型数据默认不入Git。
+- `document/`：[文档索引](document/README.md)，厂家资料与历史方案保留。
+
+## 当前边界
+
+真实 FZMotion 适配器支持多层 Type/Name/ID/Position/Rotation 表头，拒绝无表头和欧拉角；尚未真实格式验收，首次 CSV 有差异应修适配器，不手工改原数据。源位置单位按表头/配置；默认零散点视为缺测，可在API显式关闭该策略。实际左手系、额外缩放不支持。
+
+矩阵校验不证明真实坐标定义正确；同球心、支架固定和torso CAD对应仍由试采确认。既有世界点使用未标定TF，不能拿来独立标同一条链。反光球材料/尺寸可能影响RGB模型和深度，先试后采。
 
 ## 许可证
 
-本项目原创内容采用 [MIT License](LICENSE)。厂家 PDF、DOCX、图片及其 Markdown/OCR 转换件不纳入 MIT 重新授权；具体范围与待核实的再分发许可见 [第三方资料说明](THIRD_PARTY_NOTICES.md)。
+原创实现采用 [MIT](LICENSE)。厂家 PDF/DOCX/图片与转换件不属于本项目MIT重新授权，见 [第三方说明](THIRD_PARTY_NOTICES.md)。

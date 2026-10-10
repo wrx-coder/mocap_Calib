@@ -1,1 +1,1 @@
-"""Reserved for header-driven FZMotion CSV adapters."""
+"""Header-driven FZMotion and explicit long-format CSV adapters."""

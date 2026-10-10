@@ -19,6 +19,7 @@ inputs:
 source_conventions:
   # Verify these from the actual export; never infer silently.
   length_unit: null
+  export_scale: 1.0
   world_axis: null
   handedness: null
   quaternion_order: null
@@ -40,8 +41,8 @@ frames:
   world: null
   torso: torso_link
   mocap_rigid_body: null
-  camera_optical: null
-  camera_link: null
+  camera_optical: camera_color_optical_frame
+  camera_link: d435_link
 
 static_sampling:
   target_positions: [200, 400]

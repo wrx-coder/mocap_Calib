@@ -1,1 +1,1 @@
-"""Reserved for rigid Kabsch initialization and weighted robust refinement."""
+"""Rigid Kabsch initialization and weighted robust refinement."""

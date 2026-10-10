@@ -2,13 +2,13 @@
 schema_version: 1
 status: template
 serial_number: null
-model: null
-stream: null
-optical_frame: null
-resolution_px: null
-frame_rate_hz: null
+model: D435i
+stream: RGB_D
+optical_frame: camera_color_optical_frame
+resolution_px: [640, 480]
+frame_rate_hz: 30
 intrinsics:
-  source: null
+  source: calibrated_CameraInfo_or_existing_file
   fx: null
   fy: null
   cx: null
@@ -22,14 +22,15 @@ settings:
   depth_alignment_target: null
   depth_filters: null
 observation:
-  # depth_surface / stereo_ir / center_xyz; confirm the real pipeline.
-  pipeline: null
+  # RGB mask + depth; not a new intrinsic calibration.
+  pipeline: rgbd_surface
   native_frame: null
   detector_version: null
   output_quantity: null
   ball_radius_already_compensated: null
   depth_scale_already_compensated: null
   depth_unit: null
+  depth_semantics: color_z
   ball_radius_m: null
 noise:
   pixel_std_px: null

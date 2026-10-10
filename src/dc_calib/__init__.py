@@ -1,1 +1,1 @@
-"""Static spatial calibration package skeleton; no solver implemented."""
+"""Offline RGB-D camera-to-MoCap spatial calibration."""

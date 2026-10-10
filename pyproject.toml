@@ -9,9 +9,12 @@ description = "Skeleton workspace for static robot camera-to-mocap spatial calib
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["numpy>=1.23", "scipy>=1.9", "PyYAML>=6"]
 
-# Suggested future dependencies; not installed or locked by this scaffold.
+[project.scripts]
+mocap-calib = "dc_calib.cli:main"
+
+# ROS bag decoding/model inference are intentionally outside the offline core.
 [project.optional-dependencies]
 calibration = ["numpy>=1.23", "scipy>=1.9", "PyYAML>=6"]
 dev = ["pytest>=7"]
@@ -22,4 +25,4 @@ include = ["dc_mocap*", "dc_calib*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+# tests/conftest.py also supports older system pytest without installation.
