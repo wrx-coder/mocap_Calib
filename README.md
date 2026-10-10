@@ -17,7 +17,7 @@ PYTHONPATH=src python3 -m dc_calib.cli demo --output outputs/calibration/demo_00
 
 演示生成带真值的合成录制，实际经过 CSV 读取、marker ID 恢复、逐帧转 R/聚合、配对、球心补偿、优化、torso组合及导出。状态只能是 `synthetic_pass`，不能作为实机结果。
 
-现场顺序：[核心流程](document/workflow/机器人动捕标定_核心流程.md) → [详细试采指南](document/workflow/首次试采操作指南.md) → [数据契约](document/design/标定数据契约_v1.md)。先选共同靶球并采12–20点，不要一上来采几百点。D435i 内参已完成，只导入既有标定/实机 CameraInfo，不重新标定。
+现场顺序：[核心流程](workflow/机器人动捕标定_核心流程.md) → [详细试采指南](workflow/首次试采操作指南.md) → [数据契约](document/design/标定数据契约_v1.md)。先选共同靶球并采12–20点，不要一上来采几百点。D435i 内参已完成，只导入既有标定/实机 CameraInfo，不重新标定。
 
 ## 实际数据命令
 
@@ -47,7 +47,8 @@ PYTHONPATH=src python3 -m dc_calib.cli solve --mocap data/processed/session/moca
 - `src/dc_calib/`：RGB-D、torso对齐、求解/报告/导出、CLI。
 - `data/raw/`：原始录制只读保留；`data/processed/`：点产品/元数据/配对表。
 - `outputs/`：结果和报告；输入/输出大型数据默认不入Git。
-- `document/`：[文档索引](document/README.md)，厂家资料与历史方案保留。
+- `workflow/`：[流程与计划索引](workflow/README.md)，三步采集指南、记录表、核心流程与术语。
+- `document/`：[文档索引](document/README.md)，设计、厂家资料与历史方案保留。
 
 ## 当前边界
 
