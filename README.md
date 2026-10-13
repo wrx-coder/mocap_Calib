@@ -2,7 +2,7 @@
 
 **RGB-D 静态单球离线闭环**：动捕数据 → 静态 R 系球心，与相机 color optical 系球心配对 → Kabsch/Huber → `T_R_C` → 已知 torso 对齐时组合 `T_torso_C`。
 
-当前已实现共享几何、配置检查、CSV读取、手工静态窗口聚合/空间关联、RGB-D几何、torso 对齐、外参求解、留出/分半报告和版本化导出。**合成端到端测试通过；尚未收到真实动捕录制或完成实机标定。** 不控制机器人、不自动改 URDF、不推送私有源码。
+当前已实现共享几何、配置检查、CSV读取、手工静态窗口聚合/空间关联、RGB-D几何、torso 对齐、外参求解、留出/分半报告和版本化导出。**合成端到端测试通过；已用 first_test 真实录制完成候选求解与交叉诊断，尚未完成独立实机验收。** 真实进展与结果见 [数据驱动推进记录](workflow/first_test_数据驱动推进记录.md)。 不控制机器人、不自动改 URDF、不推送私有源码。
 
 ## 最短使用路径
 
@@ -50,9 +50,20 @@ PYTHONPATH=src python3 -m dc_calib.cli solve --mocap data/processed/session/moca
 - `workflow/`：[流程与计划索引](workflow/README.md)，三步采集指南、记录表、核心流程与术语。
 - `document/`：[文档索引](document/README.md)，设计、厂家资料与历史方案保留。
 
+## first_test 真实数据候选求解
+
+从已有 RGB 与静态动捕实测几何推导 mask、配对、深度尺度与候选外参，不用虚构缺失数据：
+
+```bash
+# 新输出目录，不覆盖旧结果；需要当前环境已有的 OpenCV
+python3 first_test/infer_geometry.py --output outputs/calibration/first_test_inferred_v4
+```
+
+Git 内外参摘要：[两个候选 T_W_C](document/results/first_test_extrinsics.md) / [JSON](document/results/first_test_extrinsics.json)。本地完整结果入口：`outputs/calibration/first_test_inferred_v3/README.md` / `report.json`（真实录制与大型中间数据不上传）。板PnP约0.353px、单球拟合约2.83mm，但两组外参差约4.206°/24.25mm，状态仅 `unverified`，不能部署。推导尺度/半径不是设备或尺测确认，不生成假 torso_link 外参或独立留出。
+
 ## 当前边界
 
-真实 FZMotion 适配器支持多层 Type/Name/ID/Position/Rotation 表头，拒绝无表头和欧拉角；尚未真实格式验收，首次 CSV 有差异应修适配器，不手工改原数据。源位置单位按表头/配置；默认零散点视为缺测，可在API显式关闭该策略。实际左手系、额外缩放不支持。
+真实 FZMotion 适配器支持多层 Type/Name/ID/Position/Rotation 表头，拒绝无表头和欧拉角；first_test 六份真实 CSV 已完成数值/缺测转换核验，但物理轴与四元数方向仍未独立确认。新格式有差异应修适配器，不手工改原数据。源位置单位按表头/配置；默认零散点视为缺测，可在API显式关闭该策略。实际左手系、额外缩放不支持。
 
 矩阵校验不证明真实坐标定义正确；同球心、支架固定和torso CAD对应仍由试采确认。既有世界点使用未标定TF，不能拿来独立标同一条链。反光球材料/尺寸可能影响RGB模型和深度，先试后采。
 

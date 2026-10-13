@@ -24,4 +24,10 @@ configs/local/
 /outputs/reports/*
 !/outputs/reports/.gitkeep
 
+# first_test source recordings and derived caches remain local.
+# Only processing scripts and documentation are versioned.
+/first_test/*
+!/first_test/*.py
+!/first_test/*.md
+
 # Existing vendor source documents and converted images are NOT ignored.

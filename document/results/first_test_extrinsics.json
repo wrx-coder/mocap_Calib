@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "session_id": "first_test",
+  "status": "unverified",
+  "deployable": false,
+  "source_report": "outputs/calibration/first_test_inferred_v3/report.json",
+  "convention": "T_A_B maps column-vector coordinates from B to A: p_W = R_W_C p_C + t_W_C",
+  "source_frame": "camera_color_optical_frame",
+  "target_frame": "mocap_world_as_exported",
+  "translation_unit": "m",
+  "board_rgb_pnp": {
+    "T_W_C": [
+      [-0.998132104719523, -0.05697032782714456, 0.022060899243751677, -0.06853007220517285],
+      [0.011037756908085786, -0.5233305256796188, -0.8520582895637667, 1.2256535278627974],
+      [0.060087182082481524, -0.8502232310629729, 0.5229818236901019, 0.853926506746352],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "reprojection_rmse_px_approx": 0.353,
+    "method": "RGB marker contour centers and measured mocap board-corner coordinates; no ARCode size needed"
+  },
+  "ball_rgbd_similarity": {
+    "T_W_C": [
+      [-0.992676766453637, -0.09644347353375167, 0.07274265430884914, -0.08733917714611814],
+      [-0.015560635741915624, -0.4950670358849025, -0.8687154290073621, 1.240539290914362],
+      [0.11979442373691518, -0.8634855449820114, 0.48994082259866767, 0.857512325765291],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "training_fit_rmse_m_approx": 0.00283,
+    "inferred_depth_unit_m_per_raw_approx": 0.001007078,
+    "inferred_radius_m_approx": 0.00687,
+    "method": "Similarity fit using approximate sphere centers from RGB silhouette and recorded depth",
+    "note": "Scale converts raw camera depth units to metres before applying this rigid T_W_C; not independently verified device units"
+  },
+  "cross_method_difference": {
+    "rotation_deg_approx": 4.206,
+    "translation_m_approx": 0.02425
+  },
+  "limitations": [
+    "Neither transform is T_torso_C or a verified deployment calibration.",
+    "No independent physical-position holdout; fit error is not validation accuracy.",
+    "Board and ball results disagree; group-to-group mounting invariance is unproven.",
+    "Depth units, color_z registration, silhouette radius and marker identity require confirmation.",
+    "Exported World basis is preserved; physical axis convention remains unconfirmed."
+  ]
+}

@@ -6,7 +6,7 @@
 
 ## 处理产品：`processed/<session_id>/`
 
-计划存放 P1 躯干特征、P2 静态球样本、相机静态样本、显式配对表、训练/留出划分和质量统计。详见 [工作区接口](../document/design/工作区约定与接口.md)。已实现提取/聚合，真实数据尚未提供；调用和字段见根 README 与数据契约。
+计划存放 P1 躯干特征、P2 静态球样本、相机静态样本、显式配对表、训练/留出划分和质量统计。详见 [工作区接口](../document/design/工作区约定与接口.md)。已实现提取/聚合，现有 first_test 真实数据已归档核验并推进到候选求解；调用和字段见根 README 与数据契约。最新推进见 `workflow/first_test_数据驱动推进记录.md`，候选结果见 `outputs/calibration/first_test_inferred_v3/`，尚未独立实机验收。
 
 ## 表头模板
 
